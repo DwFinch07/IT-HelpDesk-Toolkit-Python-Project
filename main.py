@@ -5,17 +5,18 @@ from ping_functions import *
 
 root = tk.Tk()
 root.title("HelpDesk Toolkit")
+root.configure(bg="#494652")
 root.geometry("800x500")
 
 def ping_on_click():
     result = test_ping
     return result
 #Ping Button
-ping_button = tk.Button(root, text = "Test Internet Connection",command = ping_on_click())
+ping_button = tk.Button(root, text = "Test Internet Connection",command = ping_on_click(),bg="#494652")
 ping_button.place(x=200,y=200)
 
 #Quit Button
-quit_button = tk.Button(root, text = "Quit", command = root.destroy)
+quit_button = tk.Button(root, text = "Quit", command = root.destroy, bg="#494652")
 quit_button.place(x=700,y=425)
 
 root.mainloop()
