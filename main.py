@@ -34,15 +34,15 @@ class Root(ctk.CTk):
    
         #Ping Button
         self.ping_button = ctk.CTkButton(self.main_frame, text = "Test Internet Connection",command = self.ping_on_click)
-        self.ping_button.place(x = 220, y= 340)
+        self.ping_button.place(x = 50, y= 340)
 
         #Quit Button
         self.quit_button = ctk.CTkButton(self, text = "Quit", command = self.destroy)
         self.quit_button.place(x=550,y=760)
 
         #Labels
-        self.label = ctk.CTkLabel(self.main_frame, text = "Test Ping")
-        self.label.place(x = 120, y = 250)
+        #self.label = ctk.CTkLabel(self.main_frame, text = "Test Ping")
+        #self.label.place(x = 120, y = 250)
 
 
 
