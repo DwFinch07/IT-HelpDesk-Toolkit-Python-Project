@@ -44,8 +44,12 @@ class Root(ctk.CTk):
         #Labels
         #self.label = ctk.CTkLabel(self.main_frame, text = "Test Ping")
         #self.label.place(x = 120, y = 250)
+<<<<<<< Updated upstream
 
 
+=======
+    #def cpu_resources_on_click(self):
+>>>>>>> Stashed changes
 
 
 
