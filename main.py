@@ -2,15 +2,16 @@ import customtkinter as ctk
 import os
 from ping_functions import *
 #Main Tkinter file (will have main GUI functionality, button presses will use Functions created in other files ex. ping.py)
-
-#Ideas For Application 
-#CPU and Resource Monitoring Built in
+#DONE IDEAS
 #Pinging Google (DONE) For Testing Internet Connections
+
+#CPU and Resource Monitoring Built in
 #System Report using all functions and return results
 #RDP Checker to see if RDP is running (Possible)
 #Test VPN (Possible)
 #Get Remaining Disk Usage on apps
 #Check if firewall active
+#On Top Make Label and Bar
 #Find a way to detect if program is being used on windows or linux or make an options setting to change
 
 
