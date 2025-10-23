@@ -1,12 +1,14 @@
-import os
-def test_ping():
+import subprocess
+import platform
 
+def test_ping(times=1):
     hostname = "google.com"
-    response = os.system("ping " + hostname)
-    if response == 1:
-        ping_stats = "Network Active"
-    else:
-        ping_stats = "Network Failed"
-    return ping_stats
-if __name__ == "__main__":
-    print(test_ping())
+
+    param = "-n" if platform.system().lower() == "windows" else "-c"
+
+    try:
+        output = subprocess.check_output(["ping", param, str(times), hostname], stderr=subprocess.STDOUT,universal_newlines=True)
+        return output
+    except subprocess.CalledProcessError as e:
+        return e.output
+    

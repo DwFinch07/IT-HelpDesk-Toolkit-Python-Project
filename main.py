@@ -14,11 +14,57 @@ from ping_functions import *
 #Find a way to detect if program is being used on windows or linux or make an options setting to change
 
 
+class Root(ctk.CTk):
+    def __init__(self):
+        super().__init__()
 
-root = ctk.CTk()
-root.title("HelpDesk Toolkit")
-#root.configure(bg="#494652")
-root.geometry("800x500")
+        self.title("HelpDesk Toolkit")
+        self.geometry("1200x800")
+        self.resizable(False,False)
+         #Frames
+        self.main_frame = ctk.CTkFrame(self, width = 1000, height = 700, border_color= "dark_color")
+        self.main_frame.place(x= 100 ,y = 50)
+            #Frame for CMD Output
+        self.output_frame = ctk.CTkFrame(self, width = 1000, height = 250, border_color= "dark_color", fg_color="black")
+        self.output_frame.place(x= 100 ,y = 500)
+
+        self.output_textbox = ctk.CTkTextbox(self.output_frame, width= 980, height= 230)
+        self.output_textbox.place(x=10, y=10)
+        self.output_textbox.configure(state = "disabled")
+   
+        #Ping Button
+        self.ping_button = ctk.CTkButton(self.main_frame, text = "Test Internet Connection",command = self.ping_on_click)
+        self.ping_button.place(x = 220, y= 340)
+
+        #Quit Button
+        self.quit_button = ctk.CTkButton(self, text = "Quit", command = self.destroy)
+        self.quit_button.place(x=550,y=760)
+
+        #Labels
+        self.label = ctk.CTkLabel(self.main_frame, text = "Test Ping")
+        self.label.place(x = 120, y = 250)
+
+
+
+
+
+    def ping_on_click(self):
+        result = test_ping(times= 2)
+        self.output_textbox.configure(state="normal")
+        self.output_textbox.insert("end", result + "\n")
+        self.output_textbox.configure(state= "disabled")
+        self.output_textbox.see("end")
+
+if __name__ == "__main__":
+    ctk.set_appearance_mode("Dark")
+    ctk.set_default_color_theme("green")
+    root = Root()
+    root.mainloop()
+    
+
+
+
+#Extra Code
 
 #Text Box
 #text_box = tk.CTkTextbox(root)
@@ -28,20 +74,3 @@ root.geometry("800x500")
 #text_box.configure(state="disabled")
 
 #tk.CTkToplevel(fg_color='Black') ##Create 2nd Window Above Could be used in future
-
-label = ctk.CTkLabel(master = root, text = "Test Ping")
-label.place(anchor = ctk.CENTER)
-
-
-def ping_on_click():
-    result = test_ping
-    return result
-#Ping Button
-ping_button = ctk.CTkButton(master = root, text = "Test Internet Connection",command = ping_on_click())
-ping_button.place(x=200,y=200)
-
-#Quit Button
-quit_button = ctk.CTkButton(root, text = "Quit", command = root.destroy)
-quit_button.place(x=700,y=425)
-
-root.mainloop()

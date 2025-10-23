@@ -1,7 +1,7 @@
 #Will get CPU temp and other system information based on platform
 
 
-Class Resources():
+class Resources:
     def windows_cpu():
         pass
 #Windows
