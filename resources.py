@@ -1,22 +1,25 @@
 import platform
 import os
-from PyLibreHardwareMonitor import Computer
+import psutil
+import subprocess
 #Will get CPU temp and other system information based on platform
 
 
 class Resources:
-    def get_os_type():
-        os_name = platform.system()
-        if os_name == "Windows":
-            return "Windows"
-        if os_name == "Linux":
+    def windows_stats():
+        info = {}
+        
+        info["OS"] = platform.system()
+        info["OS Version"] = platform.version()
+        info["CPU Cores"] = psutil.cpu_count(logical=False)
+        info["Logical CPU Cores"] = psutil.cpu_count(logical=True)
+        info["CPU Usage"] = psutil.cpu_percent(interval=1)
+        info["Disk Usage"] = psutil.disk_usage('/')
+        info["Battery Usage"] = psutil.sensors_battery()
 
-            return "Linux"
-        else:
-            return "Unknown"
-
-Resources.get_os_type()
-#Windows
-
-
-#Linux
+        cpu_freq = psutil.cpu_freq()
+        if cpu_freq:
+            info["CPU Freq (MHz)"] = round(cpu_freq.current,2)
+        
+        return info
+print(Resources.windows_stats)

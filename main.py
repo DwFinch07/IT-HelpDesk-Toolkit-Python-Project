@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import os
 from ping_functions import *
+from resources import * 
 #Main Tkinter file (will have main GUI functionality, button presses will use Functions created in other files ex. ping.py)
 #DONE IDEAS
 #Pinging Google (DONE) For Testing Internet Connections
@@ -37,6 +38,11 @@ class Root(ctk.CTk):
         self.ping_button = ctk.CTkButton(self.main_frame, text = "Test Internet Connection",command = self.ping_on_click)
         self.ping_button.place(x = 50, y= 340)
 
+        #Resources Button
+        self.resource_button = ctk.CTkButton(self.main_frame, text = "Resource Checker",command = self.resource_check)
+        self.resource_button.place(x = 550, y= 340)
+
+
         #Quit Button
         self.quit_button = ctk.CTkButton(self, text = "Quit", command = self.destroy)
         self.quit_button.place(x=550,y=760)
@@ -52,6 +58,12 @@ class Root(ctk.CTk):
         self.output_textbox.insert("end", result + "\n")
         self.output_textbox.configure(state= "disabled")
         self.output_textbox.see("end")
+
+    def resource_check(self):
+        resource_list = Resources.windows_stats()
+        for key, value in resource_list.items():
+              self.output_textbox.insert("end",f"{key}: {value}" + "\n")
+        self.output_textbox.configure(state="normal")
 
 if __name__ == "__main__":
     ctk.set_appearance_mode("Dark")
