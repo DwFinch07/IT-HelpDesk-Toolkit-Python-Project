@@ -58,9 +58,9 @@ class Root(ctk.CTk):
         
 
     def ping_on_click(self):
-        result = test_ping(times= 2)
+        ping_result = test_ping(times= 2)
         self.output_textbox.configure(state="normal")
-        self.output_textbox.insert("end", result + "\n")
+        self.output_textbox.insert("end", ping_result + "\n")
         self.output_textbox.configure(state= "disabled")
         self.output_textbox.see("end")
 
@@ -71,7 +71,7 @@ class Root(ctk.CTk):
         self.output_textbox.configure(state="normal")
     
     def firewall(self):
-        firewal_status = Firewall.linux_firewall()
+        firewal_status = Firewall.os_firewall()
         self.output_textbox.configure(state="normal")
         self.output_textbox.insert("end",f"{firewal_status}" + "\n")
         self.output_textbox.configure(state= "disabled")
