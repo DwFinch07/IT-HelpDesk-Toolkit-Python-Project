@@ -72,8 +72,10 @@ class Root(ctk.CTk):
     
     def firewall(self):
         firewal_status = Firewall.linux_firewall()
-        self.output_textbox.insert("end",f"{firewal_status}" + "\n")
         self.output_textbox.configure(state="normal")
+        self.output_textbox.insert("end",f"{firewal_status}" + "\n")
+        self.output_textbox.configure(state= "disabled")
+        self.output_textbox.see("end")
 
 if __name__ == "__main__":
     ctk.set_appearance_mode("Dark")
