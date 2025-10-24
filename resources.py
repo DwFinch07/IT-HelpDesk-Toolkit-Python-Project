@@ -19,7 +19,5 @@ class Resources:
         info["Current CPU Usage"] = psutil.cpu_percent(interval=1)
         info["Disk Usage"] = psutil.disk_usage('/')
         info["Battery Usage"] = psutil.sensors_battery()
-
-
         
         return info

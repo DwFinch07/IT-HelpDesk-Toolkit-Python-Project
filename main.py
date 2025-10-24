@@ -2,11 +2,12 @@ import customtkinter as ctk
 import os
 from ping_functions import *
 from resources import * 
+from Firewall_check import *
 #Main Tkinter file (will have main GUI functionality, button presses will use Functions created in other files ex. ping.py)
 #DONE IDEAS
 #Pinging Google (DONE) For Testing Internet Connections
+#(Done)CPU and Resource Monitoring Built in
 
-#CPU and Resource Monitoring Built in
 #System Report using all functions and return results
 #RDP Checker to see if RDP is running (Possible)
 #Test VPN (Possible)
@@ -42,6 +43,10 @@ class Root(ctk.CTk):
         self.resource_button = ctk.CTkButton(self.main_frame, text = "Resource Checker",command = self.resource_check)
         self.resource_button.place(x = 550, y= 340)
 
+        #Firewall Button
+        self.firewall_button = ctk.CTkButton(self.main_frame, text = "Check Firewall Status",command = self.firewall)
+        self.firewall_button.place(x = 650, y= 240)
+
 
         #Quit Button
         self.quit_button = ctk.CTkButton(self, text = "Quit", command = self.destroy)
@@ -63,6 +68,11 @@ class Root(ctk.CTk):
         resource_list = Resources.windows_stats()
         for key, value in resource_list.items():
               self.output_textbox.insert("end",f"{key}: {value}" + "\n")
+        self.output_textbox.configure(state="normal")
+    
+    def firewall(self):
+        firewal_status = Firewall.linux_firewall()
+        self.output_textbox.insert("end",f"{firewal_status}" + "\n")
         self.output_textbox.configure(state="normal")
 
 if __name__ == "__main__":
