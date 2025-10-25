@@ -9,6 +9,7 @@ import threading
 #Pinging Google (DONE) For Testing Internet Connections
 #(Done)CPU and Resource Monitoring Built in
 
+
 #System Report using all functions and return results
 #RDP Checker to see if RDP is running (Possible)
 #Test VPN (Possible)
@@ -25,6 +26,12 @@ class Root(ctk.CTk):
         self.title("HelpDesk Toolkit")
         self.geometry("1200x800")
         self.resizable(False,False)
+
+        #App Label
+        label_font = ("Times New Roman", 50, "bold")
+        self.app_label = ctk.CTkLabel(self, text = "Help Desk Toolkit", fg_color= "transparent", font= label_font, corner_radius= 40 ) 
+        self.app_label.place(x=90,y=-5)
+
          #Frames
         self.main_frame = ctk.CTkFrame(self, width = 1000, height = 700, border_color= "dark_color")
         self.main_frame.place(x= 100 ,y = 50)
@@ -37,16 +44,16 @@ class Root(ctk.CTk):
         self.output_textbox.configure(state = "disabled")
    
         #Ping Button
-        self.ping_button = ctk.CTkButton(self.main_frame, text = "Test Internet Connection",command = self.ping_on_click)
-        self.ping_button.place(x = 50, y= 340)
+        self.ping_button = ctk.CTkButton(self.main_frame, text = "Test Internet Connection",command = self.ping_on_click, height= 50, width= 50,border_color="black", border_width= 2)
+        self.ping_button.place(x = 50, y= 300)
 
         #Resources Button
-        self.resource_button = ctk.CTkButton(self.main_frame, text = "Resource Checker",command = self.resource_check)
-        self.resource_button.place(x = 550, y= 340)
+        self.resource_button = ctk.CTkButton(self.main_frame, text = "Resource Checker",command = self.resource_check, height= 50, width= 50 ,border_color="black", border_width= 2)
+        self.resource_button.place(x = 50, y= 200)
 
         #Firewall Button
-        self.firewall_button = ctk.CTkButton(self.main_frame, text = "Check Firewall Status",command = self.firewall)
-        self.firewall_button.place(x = 650, y= 240)
+        self.firewall_button = ctk.CTkButton(self.main_frame, text = "Check Firewall Status",command = self.firewall, height= 50, width= 50, border_color="black", border_width= 2)
+        self.firewall_button.place(x = 50, y= 100)
 
 
         #Quit Button
