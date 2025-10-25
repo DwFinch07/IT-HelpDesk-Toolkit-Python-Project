@@ -3,20 +3,20 @@ import os
 from ping_functions import *
 from resources import * 
 from Firewall_check import *
+from speedtest_function import *
 import threading
 #Main Tkinter file (will have main GUI functionality, button presses will use Functions created in other files ex. ping.py)
 #DONE IDEAS
 #Pinging Google (DONE) For Testing Internet Connections
 #(Done)CPU and Resource Monitoring Built in
-
+#(DONE)Check if firewall active Linux 
+#(DONE)On Top Make Label and Bar
+#(DONE)Find a way to detect if program is being used on windows or linux or make an options setting to change
 
 #System Report using all functions and return results
 #RDP Checker to see if RDP is running (Possible)
 #Test VPN (Possible)
 #Get Remaining Disk Usage on apps
-#Check if firewall active
-#On Top Make Label and Bar
-#Find a way to detect if program is being used on windows or linux or make an options setting to change
 
 
 class Root(ctk.CTk):
@@ -30,7 +30,7 @@ class Root(ctk.CTk):
         #App Label
         label_font = ("Times New Roman", 50, "bold")
         self.app_label = ctk.CTkLabel(self, text = "Help Desk Toolkit", fg_color= "transparent", font= label_font, corner_radius= 40 ) 
-        self.app_label.place(x=90,y=-5)
+        self.app_label.place(x=400,y=-5)
 
          #Frames
         self.main_frame = ctk.CTkFrame(self, width = 1000, height = 700, border_color= "dark_color")
@@ -55,6 +55,9 @@ class Root(ctk.CTk):
         self.firewall_button = ctk.CTkButton(self.main_frame, text = "Check Firewall Status",command = self.firewall, height= 50, width= 50, border_color="black", border_width= 2)
         self.firewall_button.place(x = 50, y= 100)
 
+        #Speed Test Button
+        self.firewall_button = ctk.CTkButton(self.main_frame, text = "Speed Test",command = self.speed_test_function, height= 50, width= 50, border_color="black", border_width= 2)
+        self.firewall_button.place(x = 550, y= 100)
 
         #Quit Button
         self.quit_button = ctk.CTkButton(self, text = "Quit", command = self.destroy)
@@ -66,7 +69,7 @@ class Root(ctk.CTk):
         
 
     def ping_on_click(self):
-        ping_result = test_ping(times= 2)
+        ping_result = Ping.test_ping(times= 2)
         self.output_textbox.configure(state="normal")
         self.output_textbox.insert("end", ping_result + "\n")
         self.output_textbox.configure(state= "disabled")
@@ -84,6 +87,14 @@ class Root(ctk.CTk):
         self.output_textbox.insert("end",f"{firewal_status}" + "\n")
         self.output_textbox.configure(state= "disabled")
         self.output_textbox.see("end")
+
+    def speed_test_function(self):
+        speed_test_result = Speed_test.test_speed()
+        self.output_textbox.configure(state="normal")
+        self.output_textbox.insert("end",f"{speed_test_result}" + "\n")
+        self.output_textbox.configure(state= "disabled")
+        self.output_textbox.see("end")
+
 
     #def password_prompt(self):
     #    ask_user_root_password = ctk.CTkInputDialog(text = "Root Password Is Required: ", title="Root Password" )
