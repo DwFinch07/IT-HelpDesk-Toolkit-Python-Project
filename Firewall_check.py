@@ -1,19 +1,19 @@
 import subprocess
 import os
 import platform
+import customtkinter as ctk
+from main import password_prompt
+password = password_prompt
 
 class Firewall:
-    def os_firewall():
+    def linux_firewall():
         operating_system = platform.system()
-        warning = "If you want to use this Feature, open as Root/Administrator"
         if operating_system == "Linux":
-           #linux_command = subprocess.run(["sudo", "ufw", "status"])
-            output = subprocess.check_output(["sudo", "ufw", "status"], stderr=subprocess.STDOUT,universal_newlines=True)
+            command = f'echo {password} | sudo -S ufw status'
+            output = subprocess.check_output([command], stderr=subprocess.STDOUT,universal_newlines=True)
             return output
-
         if operating_system == "Windows":
-            output = subprocess.check_output("powershell -Command 'Get-Service -Name mpssvc'", stderr=subprocess.STDOUT, universal_newlines=True, shell=True)
-            return output
+            print("Windows")
         else:
             pass
 

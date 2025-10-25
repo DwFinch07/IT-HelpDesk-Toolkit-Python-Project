@@ -3,6 +3,7 @@ import os
 from ping_functions import *
 from resources import * 
 from Firewall_check import *
+import threading
 #Main Tkinter file (will have main GUI functionality, button presses will use Functions created in other files ex. ping.py)
 #DONE IDEAS
 #Pinging Google (DONE) For Testing Internet Connections
@@ -76,6 +77,21 @@ class Root(ctk.CTk):
         self.output_textbox.insert("end",f"{firewal_status}" + "\n")
         self.output_textbox.configure(state= "disabled")
         self.output_textbox.see("end")
+
+    def password_prompt(self):
+        ask_user_root_password = ctk.CTkInputDialog(text = "Root Password Is Required: ", title="Root Password" )
+        user_root_password = ask_user_root_password.get_input()
+        if user_root_password:
+            thread = threading.Thread(target=self.password_check, args=(user_root_password,))
+            thread.start()
+
+    def password_check(self,user_root_password):
+        try:
+            output = Firewall.linux_firewall(user_root_password)
+            self.append_output(output)
+        except Exception as e:
+            self.append_output(f"Error: {e}")
+
 
 if __name__ == "__main__":
     ctk.set_appearance_mode("Dark")
