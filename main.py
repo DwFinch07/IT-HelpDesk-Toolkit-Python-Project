@@ -72,18 +72,18 @@ class Root(ctk.CTk):
         self.output_textbox.configure(state="normal")
     
     def firewall(self):
-        firewal_status = Firewall.os_firewall()
+        firewal_status = Firewall.linux_firewall()
         self.output_textbox.configure(state="normal")
         self.output_textbox.insert("end",f"{firewal_status}" + "\n")
         self.output_textbox.configure(state= "disabled")
         self.output_textbox.see("end")
 
-    def password_prompt(self):
-        ask_user_root_password = ctk.CTkInputDialog(text = "Root Password Is Required: ", title="Root Password" )
-        user_root_password = ask_user_root_password.get_input()
-        if user_root_password:
-            thread = threading.Thread(target=self.password_check, args=(user_root_password,))
-            thread.start()
+    #def password_prompt(self):
+    #    ask_user_root_password = ctk.CTkInputDialog(text = "Root Password Is Required: ", title="Root Password" )
+    #    user_root_password = ask_user_root_password.get_input()
+    #    if user_root_password:
+    #        thread = threading.Thread(target=self.password_check, args=(user_root_password,))
+    #        thread.start()
 
     def password_check(self,user_root_password):
         try:
