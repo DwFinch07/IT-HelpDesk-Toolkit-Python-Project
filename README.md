@@ -1,9 +1,7 @@
 Project is for Help Desk Automation
 
 Features Present in Application:
-  -Pings Google to test Internet Connection 
-  -Checks if Firewall is Active 
-  -Resource Montioring which includes 
+  Pings Google to test Internet Connection, Checks if Firewall is Active, Resource Montioring which includes 
   CPU cores, 
   CPU Frequency, 
   CPU usage, 
